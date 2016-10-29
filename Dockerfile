@@ -19,6 +19,7 @@ RUN apt-get update && \
         build-essential \
         curl \
         git \
+        net-tools \
         python \
         vim \
         wget && \

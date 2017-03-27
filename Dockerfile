@@ -40,7 +40,8 @@ RUN apt-get update && \
     rm -fr redis-3.2.5 redis-3.2.5.tar.gz && \
 
     # Install nodejs, npm etc.
-    curl -sL -k https://deb.nodesource.com/setup_4.x | bash -  && \
+    # https://github.com/nodesource/distributions
+    curl -sL -k https://deb.nodesource.com/setup_7.x | bash -  && \
     apt-get install -yq nodejs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \

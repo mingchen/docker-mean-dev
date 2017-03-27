@@ -9,6 +9,10 @@ FROM ubuntu:16.04
 
 MAINTAINER Ming Chen
 
+ENV MONGO_VERSION "3.4"
+ENV REDIS_VERSION "3.2.8"
+ENV NODE_VERSION "7.x"
+
 ENV LANG en_US.UTF-8
 RUN locale-gen $LANG
 
@@ -25,23 +29,21 @@ RUN apt-get update && \
         wget && \
 
     # Install mongodb
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
-    echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
+    # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 && \
+    echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/${MONGO_VERSION} multiverse" | tee /etc/apt/sources.list.d/mongodb-org-${MONGO_VERSION}.list && \
     apt-get update && \
     apt-get install -y mongodb-org && \
 
     # Install redis
-    wget http://download.redis.io/releases/redis-3.2.5.tar.gz && \
-    tar xvzf redis-3.2.5.tar.gz && \
-    cd redis-3.2.5 && \
-    make && \
-    make install && \
-    cd .. && \
-    rm -fr redis-3.2.5 redis-3.2.5.tar.gz && \
+    wget -q http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz && \
+    tar xzf redis-${REDIS_VERSION}.tar.gz && \
+    ( cd redis-${REDIS_VERSION} && make && make install ) && \
+    rm -fr redis-{$REDIS_VERSION} redis-${REDIS_VERSION}.tar.gz && \
 
     # Install nodejs, npm etc.
     # https://github.com/nodesource/distributions
-    curl -sL -k https://deb.nodesource.com/setup_7.x | bash -  && \
+    curl -sL -k https://deb.nodesource.com/setup_${NODE_VERSION} | bash -  && \
     apt-get install -yq nodejs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \

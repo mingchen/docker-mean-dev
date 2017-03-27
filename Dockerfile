@@ -48,5 +48,5 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     npm install -g npm && \
-    npm install --quiet -g jshint node-gyp gulp bower yo mocha karma-cli pm2 && \
+    npm install --quiet -g npm-check-updates eslint jshint node-gyp gulp bower yo mocha karma-cli pm2 && \
     npm cache clean

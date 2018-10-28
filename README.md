@@ -2,7 +2,8 @@
 
 A docker image for MEAN dev enviroment.
 
-* node: 7.x
+* Ubuntu: 16.04
+* node: 10.x
 * mongodb: 3.4
 * redis: 3.2.8
 

@@ -14,7 +14,7 @@ ENV REDIS_VERSION "3.2.8"
 ENV NODE_VERSION "10.x"
 
 ENV LANG en_US.UTF-8
-RUN locale-gen $LANG
+RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen $LANG
 
 COPY start.sh /start.sh
 

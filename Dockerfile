@@ -48,5 +48,5 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     npm install -g npm && \
-    npm install --quiet -g --no-optional npm-check-updates eslint node-gyp gulp webpack mocha karma-cli pm2 && \
-    npm cache clean
+    npm install --quiet -g --no-optional npm-check-updates eslint node-gyp webpack pm2 && \
+    npm cache clean --force

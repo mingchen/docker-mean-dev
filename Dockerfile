@@ -11,7 +11,7 @@ MAINTAINER Ming Chen
 
 ENV MONGO_VERSION "3.4"
 ENV REDIS_VERSION "3.2.8"
-ENV NODE_VERSION "10.x"
+ENV NODE_VERSION "8.x"
 
 ENV LANG en_US.UTF-8
 RUN apt-get clean && apt-get update && apt-get install -y locales && locale-gen $LANG
